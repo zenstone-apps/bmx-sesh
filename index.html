@@ -39,8 +39,8 @@
     }
     var IOS_URL = 'https://apps.apple.com/app/id6819955570';
     var ANDROID_URL = 'https://play.google.com/store/apps/details?id=com.zenstone.bmxsesh&utm_source=' + quelle() + '&utm_medium=bio&utm_campaign=profil';
-    // Erst auf true stellen, wenn BMX Sesh in BEIDEN Stores live ist: dann leitet die Seite vom Handy direkt in den richtigen Store.
-    var AUTO_REDIRECT = false;
+    // BMX Sesh ist in App Store und Google Play live (10.11.2026): vom Handy direkt in den richtigen Store weiterleiten.
+    var AUTO_REDIRECT = true;
     window.onload = function () {
       document.getElementById('ios').href = IOS_URL;
       document.getElementById('android').href = ANDROID_URL;
