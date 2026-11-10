@@ -25,6 +25,8 @@
     .badges { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
     .badges a { display: block; line-height: 0; }
     .badges img { height: 64px; width: auto; display: block; }
+    /* Handy: kein langer Text, nur Logo, eine Zeile und das Badge */
+    @media (max-width: 600px) { p { display: none; } .hint { margin-top: 18px; } }
     .hint { margin-top: 26px; font-size: .85rem; color: rgba(255,255,255,.6); }
     .hint b { color: #ff6e14; }
   </style>
@@ -45,6 +47,7 @@
       var ua = navigator.userAgent || '', isIOS = /iphone|ipad|ipod/i.test(ua), isAndroid = /android/i.test(ua);
       if (isIOS) document.getElementById('android').style.display = 'none';
       if (isAndroid) document.getElementById('ios').style.display = 'none';
+      if (isIOS || isAndroid) document.querySelector('p').style.display = 'none';   // am Handy keinen Fließtext zeigen
       if (AUTO_REDIRECT) { if (isIOS) window.location = IOS_URL; else if (isAndroid) window.location = ANDROID_URL; }
     };
   </script>
