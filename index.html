@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BMX Sesh: Bike Freestyle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="BMX Sesh: Bike Freestyle – the BMX park game for your phone. Free to download on iPhone and Android.">
+  <meta property="og:title" content="BMX Sesh: Bike Freestyle">
+  <meta property="og:description" content="Grind, send it and land backflips. Free to download on iPhone and Android.">
+  <meta property="og:image" content="logo.png">
+  <link rel="icon" type="image/png" href="icon.png">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100%; }
+    body {
+      background: #10151c url('bg.jpg') center/cover no-repeat fixed;
+      display: flex; align-items: center; justify-content: center; min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: #fff; text-align: center; padding: 24px;
+    }
+    .card { max-width: 520px; width: 100%; }
+    .logo { width: min(100%, 360px); height: auto; margin: 0 auto 18px; display: block; filter: drop-shadow(0 8px 24px rgba(0,0,0,.45)); }
+    h1 { font-size: 1.05rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #ffcd00; margin-bottom: 10px; }
+    p { color: rgba(255,255,255,.88); line-height: 1.55; font-size: 1.05rem; margin: 0 auto 26px; max-width: 420px; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+    .badges { display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap; }
+    .badges a { display: block; line-height: 0; }
+    .badges img { height: 64px; width: auto; display: block; }
+    .hint { margin-top: 26px; font-size: .85rem; color: rgba(255,255,255,.6); }
+    .hint b { color: #ff6e14; }
+  </style>
+  <script>
+    // Quelle für die Auswertung aus dem Link: .../bmxsesh/?src=youtube (auch ?utm_source=…); ohne Angabe "web"
+    function quelle() {
+      var q = new URLSearchParams(window.location.search);
+      var s = (q.get('src') || q.get('utm_source') || 'web').toLowerCase();
+      return /^[a-z0-9_-]{1,30}$/.test(s) ? s : 'web';
+    }
+    var IOS_URL = 'https://apps.apple.com/app/id6819955570';
+    var ANDROID_URL = 'https://play.google.com/store/apps/details?id=com.zenstone.bmxsesh&utm_source=' + quelle() + '&utm_medium=bio&utm_campaign=profil';
+    // Erst auf true stellen, wenn BMX Sesh in BEIDEN Stores live ist: dann leitet die Seite vom Handy direkt in den richtigen Store.
+    var AUTO_REDIRECT = false;
+    window.onload = function () {
+      document.getElementById('ios').href = IOS_URL;
+      document.getElementById('android').href = ANDROID_URL;
+      var ua = navigator.userAgent || '', isIOS = /iphone|ipad|ipod/i.test(ua), isAndroid = /android/i.test(ua);
+      if (isIOS) document.getElementById('android').style.display = 'none';
+      if (isAndroid) document.getElementById('ios').style.display = 'none';
+      if (AUTO_REDIRECT) { if (isIOS) window.location = IOS_URL; else if (isAndroid) window.location = ANDROID_URL; }
+    };
+  </script>
+</head>
+<body>
+  <div class="card">
+    <img class="logo" src="logo.png" alt="BMX Sesh">
+    <h1>Bike freestyle · free to download</h1>
+    <p>Grind rails, send kickers and jump boxes, land backflips and 360s, and chain it all into big lines. The BMX park game for your phone.</p>
+    <div class="badges">
+      <a id="ios" href="#"><img src="badge_apple.png" alt="Download on the App Store"></a>
+      <a id="android" href="#"><img src="badge_google.png" alt="Get it on Google Play"></a>
+    </div>
+    <div class="hint">Search <b>“BMX Sesh”</b> in your store</div>
+  </div>
+</body>
+</html>
